@@ -23,7 +23,7 @@ import ReactDOM from 'react-dom';
 
         - hooks:
             необходимо передать вторым аргументом массив тех данных
-            которые будем проверять, для того чтобы решить следует ли
+            которые будем проверять (Props), для того чтобы решить следует ли
             вызывать этот хук или нет.
               useEffect(() => {...}, [value])
 
@@ -132,7 +132,8 @@ const Notification = () => {
   return visible && <p>Hello</p>;
 };
 
-// # Собственный Hook
+// # Собственный Hook (Отдельный компонент сервис на загрузки данных)
+// Абстрагируется остальные компоненты от получения данных
 const usePlanetInfo = (id) => {
   const [name, setName] = useState(null);
 
@@ -160,23 +161,5 @@ const PlanetInfo = ({ id }) => {
 
   return <div>Planet Name: {name}</div>;
 };
-
-class ClassCounter extends Component {
-  componentDidMount() {
-    console.log('class: mount');
-  }
-
-  componentDidUpdate() {
-    console.log('class: update');
-  }
-
-  componentWillUnmount() {
-    console.log('class: unmount');
-  }
-
-  render() {
-    return <p>{this.props.value}</p>;
-  }
-}
 
 ReactDOM.render(<App />, document.getElementById('root'));
